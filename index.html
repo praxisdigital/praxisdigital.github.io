@@ -1,73 +1,337 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Praxis oplever i øjeblikket tekniske problemer</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-        <link rel="manifest" href="site.webmanifest">
-        <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
-
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
-
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    </head>
-    <body>
-    <nav class="navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a target="_blank" href="https://praxis.dk/"><img src="img/praxis_forlag_fuld-vignette_pos_logo.png"></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-
-            </div><!--/.navbar-collapse -->
-        </div>
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moxis - Midlertidig Vedligeholdelse</title>
+    <link rel="icon" href="https://www.moxis.dk/hubfs/favicon.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, 
+                rgb(1, 204, 208) 0%, 
+                rgb(43, 147, 210) 25%, 
+                rgb(95, 71, 209) 50%, 
+                rgb(145, 63, 211) 75%, 
+                rgb(145, 63, 211) 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+        }
+        
+        .navbar-logo {
+            height: 60px;
+            width: auto;
+        }
+        
+        .main-content {
+            padding-top: 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-container {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .logo-img {
+            max-height: 80px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.95;
+        }
+        
+        .main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .status-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        
+        .status-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(249, 128, 18, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .status-icon svg {
+            width: 40px;
+            height: 40px;
+            color: rgb(249, 128, 18);
+        }
+        
+        .status-text {
+            font-size: 1.1rem;
+            color: white;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .eta {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+        
+        .contact-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-details {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-bottom-color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            border-bottom-color: white;
+        }
+        
+        .background-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            left: -100px;
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(0px) rotate(180deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(270deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1rem;
+                height: 70px;
+            }
+            
+            .navbar-logo {
+                height: 50px;
+            }
+            
+            .main-content {
+                padding-top: 90px;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .logo-container {
+                margin-bottom: 2rem;
+            }
+            
+            .logo-img {
+                max-height: 60px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .status-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-info {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="https://www.moxis.dk/hubfs/Admin/Zendesk%20import/LRU/Logoer/Logoer%20farve/MOXIS_LOGO_2_0-1.png" alt="Moxis Logo" class="navbar-logo">
     </nav>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-6">
-                  <h1>Tekniske problemer!</h1>
-				  <p>Praxis oplever i øjeblikke tekniske problemer!</p>
-                   <p>Følg status på <a href="https://twitter.com/praxisdrift">https://twitter.com/praxisdrift</a></p>
-              </div>
-              <div class="col-md-6">
-                  <img src="img/disaster.jpg" alt="stop skilt" title="Praxis oplever i øjeblikke tekniske problemer" />
-              </div>
-          </div>
-
-      </div>
+    
+    <div class="main-content">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <div class="container">
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/200x80/ffffff/ffffff?text=MOXIS" alt="Moxis Logo" class="logo-img" style="display: none;">
+        </div>
+        
+        <h1 class="main-title">Moodle er i øjeblikket utilgængelig</h1>
+        <p class="subtitle">På grund af en teknisk fejl er Moodle i øjeblikket utilgængelig.</p>
+        
+        <div class="status-card">
+            <div class="status-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M16.59,7.58L10,14.17L7.41,11.59L6,13L10,17L18,9L16.59,7.58Z"/>
+                </svg>
+            </div>
+            <div class="status-text">
+                Vi arbejder på højtryk for at genetablere alle tjenester. Alle data er sikre, og ingen information er gået tabt.
+            </div>
+            <div class="eta">
+                Forventet genoprettelse: Så hurtigt som muligt
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h3 class="contact-title">Har du brug for hjælp?</h3>
+            <div class="contact-details">
+                Kontakt vores supportteam på <a href="mailto:support@moxis.dk">support@moxis.dk</a><br>
+                eller ring til os på <a href="tel:+4520761550">+45 20 76 15 50</a><br><br>
+                Status for nedbruddet kan følges på <a href="https://status.moxis.dk" target="_blank">status.moxis.dk</a><br><br>
+                Vi beklager ulejligheden og takker for din tålmodighed.
+            </div>
+        </div>
     </div>
-
-    <div class="orange">
-        <div class="container ">
-
-            <footer>
-                <p>&copy; Praxis A/S 2021</p>
-            </footer>
-        </div> <!-- /container -->
-    </div>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
-        <script src="js/vendor/bootstrap.min.js"></script>
-
-        <script src="js/main.js"></script>
-    </body>
+</body>
 </html>
